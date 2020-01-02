@@ -1,4 +1,6 @@
-# Quarto
+
+[<p align="center"><img src="logo.png" alt="Quarto" width=400></p>](https://huangweiran.club)
+
 Quarto is a toy-level, self-implemented deep learning library with autograd.
 
 ## Content
