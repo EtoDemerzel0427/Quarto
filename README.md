@@ -21,4 +21,4 @@ Quarto is now under planning. Similar to PyTorch, in the first stage, we will im
 ## Reference
 1. To understand the concept of automatic differentiation: [Automatic Differentiation in Machine Learning: a Survey](https://arxiv.org/pdf/1502.05767.pdf)
 2. To quickly get the big picture of automatic differentiation: [UWashington slides](http://dlsys.cs.washington.edu/pdf/lecture4.pdf)
-3. To quickly understand Pytorch internals: [](http://blog.ezyang.com/2019/05/pytorch-internals/)
+3. To quickly understand Pytorch internals: [Pytorch Internals for Potential Contributors](http://blog.ezyang.com/2019/05/pytorch-internals/)
