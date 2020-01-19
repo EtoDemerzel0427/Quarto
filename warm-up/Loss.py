@@ -4,11 +4,12 @@ from which we only need their values and grads.
 """
 
 import numpy as np
+from typing import Tuple
 
 
 class Loss:
     @staticmethod
-    def forward(input: np.ndarray, target: np.ndarray) -> float:
+    def forward(input: np.ndarray, target: np.ndarray) -> Tuple[float, Tuple[np.ndarray, np.ndarray]]:
         raise NotImplementedError
 
     @staticmethod
@@ -18,7 +19,7 @@ class Loss:
 # TODO: add type and shape checking
 class CrossEntropyLoss(Loss):
     @staticmethod
-    def forward(input: np.ndarray, target: np.ndarray) -> float:
+    def forward(input: np.ndarray, target: np.ndarray) -> Tuple[float, Tuple[np.ndarray, np.ndarray]]:
         """
 
         :param input: N x D ndarray, each row as a vector.
@@ -39,13 +40,21 @@ class CrossEntropyLoss(Loss):
         input_max = np.max(input, axis=1, keepdims=True)  # N x 1
         input -= input_max
 
-        loss = -input[np.arange(len(input)), target][:, None] + np.log(np.sum(np.exp(input), axis=1, keepdims=True))
+        input_exp = np.exp(input)
+        loss = -input[np.arange(len(input)), target][:, None] + np.log(np.sum(input_exp, axis=1, keepdims=True))
 
-        return loss
+        cache = input_exp, target
+
+        return loss, cache
 
     @staticmethod
-    def backward(dout, cache):
-        raise NotImplementedError
+    def backward(cache, dout=1):
+        input_exp, target = cache
+        grads = input_exp / np.sum(input_exp, axis=1, keepdims=True)
+
+        grads[np.arange(len(grads)), target] -= 1
+
+        return dout * grads / len(grads)
 
 
 if __name__ == '__main__':
@@ -57,4 +66,13 @@ if __name__ == '__main__':
         [-0.2652, -0.3018, -0.2923, -0.5061,  1.3517]])
     y = np.array([3,4,3])
 
-    print(np.mean(loss.forward(x, y)))
+    l, cache = loss.forward(x, y)
+    grads = loss.backward(cache)
+    print(loss)
+    print(grads)
+
+# [[ 0.0374,  0.2280,  0.0232, -0.3181,  0.0295],
+#  [ 0.0342,  0.0303,  0.1325,  0.0781, -0.2752],
+#  [ 0.0381,  0.0367,  0.0370, -0.3034,  0.1917]]
+
+    print(np.mean(loss.forward(x, y)[0]))
