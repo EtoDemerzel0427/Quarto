@@ -5,6 +5,7 @@ class DNN:
     def __init__(self, layer_dims: List) -> None:
         self.layer_dims = layer_dims
         self.dim = len(self.layer_dims)
+        self.params = {}
 
     def init_parameters(self):
         raise NotImplementedError

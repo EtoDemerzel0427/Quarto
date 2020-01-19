@@ -12,16 +12,19 @@ class Activation:
 
 
 class Sigmoid(Activation):
+    """
+    In the forward pass, sigmoid(x) = 1 / (1 + exp(-x))
+    In the backward pass, sigmoid'(x) = sigmoid(x) * (1 - sigmoid(x))
+    """
     @staticmethod
     def forward(x):
         output = 1. / (1. + np.exp(-x))
-        cache = x
+        cache = output
         return output, cache
 
     @staticmethod
     def backward(dout, cache):
-        sig = 1./ (1. + np.exp(-cache))
-        grad = sig * (1 - sig)
+        grad = cache * (1 - cache)
 
         return dout * grad
 
@@ -35,17 +38,38 @@ class Relu(Activation):
         return output, cache
 
     def backward(dout, cache):
-        grad_output = np.array(dout, copy=True)
-        grad_output[cache < 0] = 0
+        grads = np.array(dout, copy=True)
+        grads[cache < 0] = 0
 
-        return grad_output
+        return grads
 
 class Softmax(Activation):
+    """
+    Since CrossEntropyLoss is easier and efficient to implement,
+    I will not implement a single Softmax class this time.
+    """
     @staticmethod
     def forward(x):
-        pass
+        raise NotImplementedError
 
     @staticmethod
     def backward(dout, cache):
-        pass
+        raise NotImplementedError
+
+
+if __name__ == '__main__':
+    x = np.array([0.4, 1, -20, 48])
+
+    # sigmoid test
+    y, cache= Sigmoid.forward(x)
+    grads = Sigmoid.backward(1, cache)
+
+    f = lambda x: 1. / (1. + np.exp(-x))
+    g = lambda x: (f(x + 0.0001) - f(x - 0.0001)) / 0.0002
+
+    print(f(x), g(x))
+    print(y, grads)
+
+    # relu test
+
 

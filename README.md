@@ -17,6 +17,12 @@ Quarto is now under planning. Similar to PyTorch, in the first stage, we will im
 1. Learn about reverse-mode autograd.
 2. Learn about static typing in Python with `mypy`.
 
+## Misc
+
+Before really diving into this Quarto project, I decided to finish a simple warm-up project: implementing a DNN model for MNIST handwritten digit recognition with pure Python. By doing this, I believe I will understand deeper about the big picture of the Quarto library. On the other hand, doing deep learning without any autograd tools is kind of cool :)
+
+The warm-up project is [here](https://github.com/EtoDemerzel0427/Quarto/tree/master/warm-up). I am also writing a tutorial for it, once finished, I will put the link here too.
+
 
 ## Reference
 1. To understand the concept of automatic differentiation: [Automatic Differentiation in Machine Learning: a Survey](https://arxiv.org/pdf/1502.05767.pdf)
