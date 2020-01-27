@@ -17,6 +17,9 @@ class Module:
     def backward(self, dout):
         raise NotImplementedError
 
+    def __repr__(self):
+        raise NotImplementedError
+
 
 class Dense(Module):
     def __init__(self, input_dim: int, output_dim: int, use_bias: bool = False, activation: str = "relu") -> None:
@@ -27,7 +30,9 @@ class Dense(Module):
         self.bias = None
         self.cache = {}
 
-        if activation == "sigmoid":
+        if activation == "Linear":
+            self.activation = None
+        elif activation == "sigmoid":
             self.activation = Sigmoid
         elif activation == "relu":
             self.activation = Relu
@@ -58,9 +63,12 @@ class Dense(Module):
             self.cache['W'] = self.weight
             self.cache['x'] = inputs
 
-        act = self.activation.forward
-        output, act_cache = act(affined)
-        self.cache['act'] = act_cache
+        if self.activation is not None:
+            act = self.activation.forward
+            output, act_cache = act(affined)
+            self.cache['act'] = act_cache
+        else:
+            output = affined
 
         return output
 
@@ -71,8 +79,11 @@ class Dense(Module):
         """
 
         # backprop of activation
-        act_back = self.activation.backward
-        d_linear = act_back(dout, self.cache['act'])
+        if self.activation is not None:
+            act_back = self.activation.backward
+            d_linear = act_back(dout, self.cache['act'])
+        else:
+            d_linear = dout
 
         # backprop of linear layer
         dW = self.cache['x'].T @ d_linear
@@ -85,6 +96,10 @@ class Dense(Module):
             grads = {'dW': dW, 'dx': dx}
 
         return grads
+
+    def __repr__(self):
+        return f"Dense(input_dim={self.input_dim}, output_dim={self.output_dim}, use_bias={self.use_bias}," \
+            f"activation={self.activation})"
 
 
 
@@ -101,6 +116,9 @@ class Dropout(Module):
 
     def backward(self, dout):
         pass
+
+    def __repr__(self):
+        raise NotImplementedError
 
 
 if __name__ == '__main__':

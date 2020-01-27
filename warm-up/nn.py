@@ -1,22 +1,68 @@
+import numpy as np
 from Layers import Dense
 from typing import List
 
 class DNN:
-    def __init__(self, layer_dims: List) -> None:
-        self.layer_dims = layer_dims
-        self.dim = len(self.layer_dims)
-        self.params = {}
+    def __init__(self) -> None:
+        self.layers = []
+        self.grads = []
 
     def init_parameters(self):
-        raise NotImplementedError
+        for layer in self.layers:
+            layer.init_parameters()
 
-    def forward(self, input):
-        raise NotImplementedError
+    def add(self, layer):
+        self.layers.append(layer)
 
-    def loss(self):
-        raise NotImplementedError
+        #todo: add params
 
-    def backward(self):
-        raise NotImplementedError
+
+    def forward(self, inputs):
+        x = inputs.copy()
+        for layer in self.layers:
+            x = layer.forward(x)
+
+        return x
+
+    def backward(self, dout):
+        grads = dout.copy()
+        for layer in reversed(self.layers):
+            layer_grads = layer.backward(grads)
+            if layer.use_bias:
+                dW, db = layer_grads['dW'], layer_grads['db']
+                self.grads.append({'dW': dW, 'db': db})
+            else:
+                dW = layer_grads['dW']
+                self.grads.append({'dW': dW, 'db': None})
+
+
+            grads = layer_grads['dx']
+
+        self.grads[-1]['dx'] = grads
+        self.grads.reverse()
+
+        return self.grads
+
+
+
+
+if __name__ == '__main__':
+    x = np.random.randn(4, 50)
+    net = DNN()
+    net.add(Dense(50, 20, use_bias=True))
+    net.add(Dense(20, 15, use_bias=True))
+    net.add(Dense(15, 10, use_bias=True, activation="Linear"))
+
+    net.init_parameters()
+    output = net.forward(x)
+    from Loss import CrossEntropyLoss
+    criterion = CrossEntropyLoss()
+    target = np.array([1,3,4,6])
+    loss = criterion.forward(output, target)
+    print(loss)
+    grads = criterion.backward()
+    print(grads)
+    net.backward(grads)
+    print(net.grads)
 
 

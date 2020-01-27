@@ -70,6 +70,5 @@ if __name__ == '__main__':
     print(f(x), g(x))
     print(y, grads)
 
-    # relu test
 
 
