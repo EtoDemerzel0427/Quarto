@@ -2,6 +2,7 @@ import numpy as np
 from Layers import Dense
 from typing import List
 
+
 class DNN:
     def __init__(self) -> None:
         self.layers = []
@@ -14,8 +15,8 @@ class DNN:
     def add(self, layer):
         self.layers.append(layer)
 
-        #todo: add params
-
+    def zero_grad(self):
+        self.grads = []
 
     def forward(self, inputs):
         x = inputs.copy()
@@ -25,6 +26,8 @@ class DNN:
         return x
 
     def backward(self, dout):
+        self.zero_grad()
+
         grads = dout.copy()
         for layer in reversed(self.layers):
             layer_grads = layer.backward(grads)
@@ -33,15 +36,33 @@ class DNN:
                 self.grads.append({'dW': dW, 'db': db})
             else:
                 dW = layer_grads['dW']
-                self.grads.append({'dW': dW, 'db': None})
+                self.grads.append({'dW': dW})
 
 
             grads = layer_grads['dx']
 
-        self.grads[-1]['dx'] = grads
         self.grads.reverse()
 
-        return self.grads
+    def train_step(self, lr=1e-3, weight_decay=0):
+        """
+        a simple SGD optimizer.
+        :param lr: learning rate.
+        :param weight_decay: weight decay.
+        :return:
+        """
+        for i, layer in enumerate(self.layers):
+            if layer.use_bias:
+                db = self.grads[i]['db']
+                db += weight_decay * db
+                layer.bias -= lr * db
+
+            dW = self.grads[i]['dW']
+            dW += weight_decay * dW
+            layer.weight -= lr * dW
+
+
+
+
 
 
 
@@ -63,6 +84,6 @@ if __name__ == '__main__':
     grads = criterion.backward()
     print(grads)
     net.backward(grads)
-    print(net.grads)
+    net.train_step()
 
 
