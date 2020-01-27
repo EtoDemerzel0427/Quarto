@@ -97,6 +97,25 @@ class Dense(Module):
 
         return grads
 
+    def eval(self, inputs):
+        """
+        Simply do what the forward method do, but do not touch the cache.
+        :param inputs:
+        :return:
+        """
+        if self.use_bias:
+            affined = np.dot(inputs, self.weight) + self.bias
+        else:
+            affined = np.dot(inputs, self.weight)
+
+        if self.activation is not None:
+            act = self.activation.forward
+            output, act_cache = act(affined)
+        else:
+            output = affined
+
+        return output
+
     def __repr__(self):
         return f"Dense(input_dim={self.input_dim}, output_dim={self.output_dim}, use_bias={self.use_bias}," \
             f"activation={self.activation})"

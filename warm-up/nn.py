@@ -3,7 +3,7 @@ from Layers import Dense
 from typing import List
 
 
-class DNN:
+class DNNClassfier:
     def __init__(self) -> None:
         self.layers = []
         self.grads = []
@@ -60,16 +60,18 @@ class DNN:
             dW += weight_decay * dW
             layer.weight -= lr * dW
 
+    def eval(self, inputs):
+        x = inputs.copy()
+        for layer in self.layers:
+            x = layer.eval(x)
 
-
-
-
-
+        output = np.argmax(x, axis=1)
+        return output
 
 
 if __name__ == '__main__':
     x = np.random.randn(4, 50)
-    net = DNN()
+    net = DNNClassfier()
     net.add(Dense(50, 20, use_bias=True))
     net.add(Dense(20, 15, use_bias=True))
     net.add(Dense(15, 10, use_bias=True, activation="Linear"))
