@@ -37,6 +37,7 @@ class Relu(Activation):
 
         return output, cache
 
+    @staticmethod
     def backward(dout, cache):
         grads = np.array(dout, copy=True)
         grads[cache < 0] = 0

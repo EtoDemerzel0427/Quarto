@@ -46,6 +46,11 @@ class Dense(Module):
         if self.use_bias:
             self.bias = zero_initializer(1, self.output_dim)
 
+    def assign_parameters(self, weight, bias=None):
+        self.weight = weight
+        if bias is not None:
+            self.bias = bias
+
     def forward(self, inputs):
         """
 

@@ -12,6 +12,24 @@ class DNNClassfier:
         for layer in self.layers:
             layer.init_parameters()
 
+    def assign_parameters(self, weights, biases=None):
+        if biases is not None:
+            for i, layer in enumerate(self.layers):
+                layer.assign_parameters(weights[i], biases[i])
+        else:
+            for i, layer in enumerate(self.layers):
+                layer.assign_parameters(weights[i])
+
+    def save_model(self, weight_file="weight.npy", bias_file=None):
+        weights, biases = [], []
+        for layer in self.layers:
+            weights.append(layer.weight)
+            biases.append(layer.bias)
+
+        np.save(weight_file, weights)
+        if bias_file is not None:
+            np.save(bias_file, biases)
+
     def add(self, layer):
         self.layers.append(layer)
 

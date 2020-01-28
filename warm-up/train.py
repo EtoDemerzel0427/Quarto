@@ -51,7 +51,7 @@ criterion = CrossEntropyLoss()
 
 # training
 batch_size = 1000
-epoch = 30
+epoch = 300
 
 batch_num = int(np.ceil(X_train.shape[0]/batch_size))
 
@@ -68,7 +68,21 @@ for _ in range(epoch):
         net.backward(grads)
 
         net.train_step(lr=1e-2)
-    print(f"epoch {_ + 1} acc: {accuracy(net.eval(X_train), Y_train)}")
+    print(f"epoch {_ + 1} train acc: {accuracy(net.eval(X_train), Y_train)}    val acc: {accuracy(net.eval(X_val), Y_val)}")
 
 print(f"Val Acc: {accuracy(net.eval(X_val), Y_val)}")
+net.save_model("weights.npy")
+
+
+# test
+Y_test = test[0]
+X_test = test.drop(labels=0, axis="columns")
+
+del test
+
+# normalize X_train
+X_test = X_test.values / 255.
+print(f"Test Acc: {accuracy(net.eval(X_test), Y_test)}")
+
+
 
