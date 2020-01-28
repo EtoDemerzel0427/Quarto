@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1872475-b4f0-40b8-bbbc-0d4a0e5f2528" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Layers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/nn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="38" column="56" lean-forward="true" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+            <state relative-caret-position="380">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -101,8 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Activations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1349">
-              <caret line="71" selection-start-line="71" selection-end-line="71" />
+            <state relative-caret-position="836">
+              <caret line="44" column="20" lean-forward="true" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -125,12 +121,12 @@
         <option value="$PROJECT_DIR$/Initializers.py" />
         <option value="$PROJECT_DIR$/Loss.py" />
         <option value="$PROJECT_DIR$/testing.py" />
-        <option value="$PROJECT_DIR$/Activations.py" />
         <option value="$PROJECT_DIR$/Optimizer.py" />
         <option value="$PROJECT_DIR$/Layers.py" />
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/nn.py" />
         <option value="$PROJECT_DIR$/example.py" />
+        <option value="$PROJECT_DIR$/Activations.py" />
       </list>
     </option>
   </component>
@@ -321,12 +317,12 @@
       <workItem from="1579349936365" duration="11515000" />
       <workItem from="1579501685059" duration="11702000" />
       <workItem from="1580017573878" duration="18189000" />
-      <workItem from="1580115762301" duration="27784000" />
+      <workItem from="1580115762301" duration="29196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73651000" />
+    <option name="totallyTimeSpent" value="75063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1632" height="884" extended-state="6" />
@@ -337,7 +333,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32756326" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32756326" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39946738" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -437,13 +433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Activations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1349">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Optimizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
@@ -492,10 +481,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Activations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="44" column="20" lean-forward="true" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="38" column="56" lean-forward="true" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+        <state relative-caret-position="380">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
