@@ -21,6 +21,8 @@ Quarto is now under planning. Similar to PyTorch, in the first stage, we will im
 
 Before really diving into this Quarto project, I decided to finish a simple warm-up project: implementing a DNN model for MNIST handwritten digit recognition with pure Python. By doing this, I believe I will understand deeper about the big picture of the Quarto library. On the other hand, doing deep learning without any autograd tools is kind of cool :)
 
+This model is a 6-layer DNN, the input layer and each hidden layer use ReLU as activation, while the output layer employs Softmax to get probabilities. The cost function is cross entropy, and the optimizer is a simple SGD optimizer. Without any regularization or carefully tuning hyperparameters, we reach **97.09%** accuracy on test set.
+
 The warm-up project is [here](https://github.com/EtoDemerzel0427/Quarto/tree/master/warm-up). I am also writing a tutorial for it, once finished, I will put the link here too.
 
 
