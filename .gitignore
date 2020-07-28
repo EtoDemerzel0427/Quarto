@@ -130,3 +130,7 @@ dmypy.json
 
 # data files
 *.csv
+
+# IDE config
+.idea*
+./.idea/*
